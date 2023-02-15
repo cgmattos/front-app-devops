@@ -1,0 +1,35 @@
+#App{
+    display: flex;
+    flex-direction: column;
+}
+
+#header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#content{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#logo_papo_devops{
+    height: 80%;
+    margin: 15px;
+}
+
+#pipe_img{
+    height: 50%;
+}
+
+#pipe_text{
+    font-size: 24px;
+    background-color: aliceblue;
+    width: 50%;
+    text-align: center;
+    overflow-wrap: break-word;
+    border-radius: 5px;
+}
