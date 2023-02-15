@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import './css/App.css';
 import logo_papo_devops from './imgs/papo_devops.png';
 import no_img from './imgs/no_image.png';
-import api from './api.js';
 import jenkins from './imgs/jenkins.png';
 import github from './imgs/github.png';
 import gitlab from './imgs/gitlab.png';
 import azure from './imgs/azure.png';
+import axios from 'axios';
 
 function App() {
 
@@ -38,10 +38,7 @@ function App() {
 
   useEffect(()=> {
     try{
-      let resText = getText();
-      if (resText.status === 200){
-        setText(resText);
-      }
+      getText();
     }catch(e) {
       console.log(e);
     }
@@ -49,7 +46,7 @@ function App() {
     try{
       let resColor = getColor();
       if (resColor.status === 200){
-        setText(resColor);
+        setColor(resColor);
       }
     }catch(e) {
       console.log(e);
@@ -63,26 +60,24 @@ function App() {
 
   const getText = async () => {
     try{
-      const res = await api.get(`/contentText`);
+      const res = await axios.get(`http://${process.env.REACT_APP_BACKEND_URL}/text`);
       if (res.status === 200){
-        return res;
-      }else{
-        return null;
+        setText(res.data);
       }
     }catch (e){
+      console.log(e);
       return null;
     }
   }
 
   const getColor = async () => {
     try{
-      const res = await api.get(`/color`);
+      const res = await axios.get(`http://${process.env.REACT_APP_BACKEND_URL}/color`);
       if (res.status === 200){
-        return res;
-      }else{
-        return null;
+        setColor(res.data);
       }
     }catch (e){
+      console.log(e);
       return null;
     }
   }
